@@ -1,0 +1,178 @@
+[
+  {
+    "code": "CSCE 620",
+    "course_number": "620",
+    "title": "Artificial Intelligence",
+    "description": "Introduction to intelligent systems, search, knowledge representation, reasoning, planning, and machine learning foundations.",
+    "department": "CSCE",
+    "level": "graduate",
+    "prerequisites": "Graduate standing or approval of instructor.",
+    "topics": "search algorithms, knowledge graphs, reasoning, planning, ML",
+    "credits": "3"
+  },
+  {
+    "code": "CSCE 633",
+    "course_number": "633",
+    "title": "Machine Learning",
+    "description": "Supervised and unsupervised learning, model evaluation, neural networks, probabilistic learning, and optimization methods.",
+    "department": "CSCE",
+    "level": "graduate",
+    "prerequisites": "Linear algebra, probability, and programming experience.",
+    "topics": "classification, regression, clustering, neural networks, optimization",
+    "credits": "3"
+  },
+  {
+    "code": "CSCE 636",
+    "course_number": "636",
+    "title": "Deep Learning",
+    "description": "Deep neural networks for representation learning with applications in vision, natural language processing, and sequence modeling.",
+    "department": "CSCE",
+    "level": "graduate",
+    "prerequisites": "Machine learning background recommended.",
+    "topics": "CNNs, transformers, RNNs, optimization, computer vision, NLP",
+    "credits": "3"
+  },
+  {
+    "code": "CSCE 642",
+    "course_number": "642",
+    "title": "Computer Vision",
+    "description": "Image formation, feature extraction, object recognition, image segmentation, motion analysis, and visual learning.",
+    "department": "CSCE",
+    "level": "graduate",
+    "prerequisites": "Linear algebra and programming experience.",
+    "topics": "image processing, recognition, segmentation, visual learning",
+    "credits": "3"
+  },
+  {
+    "code": "CSCE 665",
+    "course_number": "665",
+    "title": "Distributed Systems",
+    "description": "Distributed architectures, fault tolerance, consensus, replication, scalability, and cloud-based service design.",
+    "department": "CSCE",
+    "level": "graduate",
+    "prerequisites": "Operating systems and networking recommended.",
+    "topics": "consensus, replication, cloud systems, distributed computing",
+    "credits": "3"
+  },
+  {
+    "code": "CSCE 671",
+    "course_number": "671",
+    "title": "Information Security",
+    "description": "Security principles, cryptography basics, system attacks, access control, secure protocols, and risk analysis.",
+    "department": "CSCE",
+    "level": "graduate",
+    "prerequisites": "Computer systems background.",
+    "topics": "cybersecurity, cryptography, access control, secure systems",
+    "credits": "3"
+  },
+  {
+    "code": "CSCE 689",
+    "course_number": "689",
+    "title": "Data Mining and Analysis",
+    "description": "Methods for extracting patterns from large datasets, including clustering, association analysis, anomaly detection, and predictive analytics.",
+    "department": "CSCE",
+    "level": "graduate",
+    "prerequisites": "Probability and programming experience.",
+    "topics": "data mining, anomaly detection, pattern discovery, analytics",
+    "credits": "3"
+  },
+  {
+    "code": "CSCE 221",
+    "course_number": "221",
+    "title": "Data Structures and Algorithms",
+    "description": "Specification and implementation of abstract data types and associated algorithms including lists, stacks, queues, sorting, searching, graphs, and hashing.",
+    "department": "CSCE",
+    "level": "undergraduate",
+    "prerequisites": "Introductory programming and discrete structures.",
+    "topics": "data structures, algorithms, graphs, sorting, analysis",
+    "credits": "4"
+  },
+  {
+    "code": "CSCE 313",
+    "course_number": "313",
+    "title": "Introduction to Computer Systems",
+    "description": "Computer system organization, machine-level programming, memory hierarchy, concurrency basics, and systems programming concepts.",
+    "department": "CSCE",
+    "level": "undergraduate",
+    "prerequisites": "Data structures and programming proficiency.",
+    "topics": "computer systems, memory, concurrency, programming",
+    "credits": "4"
+  },
+  {
+    "code": "CSCE 420",
+    "course_number": "420",
+    "title": "Artificial Intelligence",
+    "description": "Fundamental concepts and techniques of intelligent systems including knowledge representation, search, planning, intelligent agents, and applications.",
+    "department": "CSCE",
+    "level": "undergraduate",
+    "prerequisites": "Algorithms and upper-level standing.",
+    "topics": "artificial intelligence, search, planning, agents",
+    "credits": "3"
+  },
+  {
+    "code": "CSCE 421",
+    "course_number": "421",
+    "title": "Machine Learning",
+    "description": "Foundations of machine learning, pattern recognition, supervised and unsupervised learning, predictive models, clustering, and deep learning.",
+    "department": "CSCE",
+    "level": "undergraduate",
+    "prerequisites": "Linear algebra, statistics, and programming.",
+    "topics": "machine learning, pattern recognition, clustering, deep learning",
+    "credits": "3"
+  },
+  {
+    "code": "ECEN 248",
+    "course_number": "248",
+    "title": "Introduction to Digital Systems Design",
+    "description": "Design of digital logic systems, combinational and sequential circuits, hardware description methods, and system implementation.",
+    "department": "ECEN",
+    "level": "undergraduate",
+    "prerequisites": "Calculus and introductory engineering fundamentals.",
+    "topics": "digital logic, circuits, hardware design, sequential systems",
+    "credits": "4"
+  },
+  {
+    "code": "ECEN 322",
+    "course_number": "322",
+    "title": "Computer Architecture and Design",
+    "description": "Instruction set architecture, processor design, pipelining, memory hierarchy, and hardware-software interaction.",
+    "department": "ECEN",
+    "level": "undergraduate",
+    "prerequisites": "Digital systems design and programming background.",
+    "topics": "computer architecture, processors, pipelining, memory systems",
+    "credits": "4"
+  },
+  {
+    "code": "ECEN 404",
+    "course_number": "404",
+    "title": "Introduction to Machine Learning",
+    "description": "Core machine learning methods including supervised learning, neural networks, feature engineering, model evaluation, and engineering applications.",
+    "department": "ECEN",
+    "level": "undergraduate",
+    "prerequisites": "Linear algebra, probability, and programming.",
+    "topics": "machine learning, neural networks, feature engineering, prediction",
+    "credits": "3"
+  },
+  {
+    "code": "ECEN 689",
+    "course_number": "689",
+    "title": "Special Topics in Machine Learning Systems",
+    "description": "Advanced topics in large-scale machine learning systems, hardware-aware optimization, acceleration, and deployment of intelligent systems.",
+    "department": "ECEN",
+    "level": "graduate",
+    "prerequisites": "Graduate standing and background in machine learning or computer architecture.",
+    "topics": "machine learning systems, acceleration, optimization, deployment",
+    "credits": "3"
+  },
+  {
+    "code": "ECEN 704",
+    "course_number": "704",
+    "title": "Advanced Computer Architecture",
+    "description": "Advanced processor architecture, parallel systems, memory hierarchy, accelerators, and performance optimization for modern computing platforms.",
+    "department": "ECEN",
+    "level": "graduate",
+    "prerequisites": "Computer architecture background and graduate standing.",
+    "topics": "parallel systems, accelerators, processors, performance, architecture",
+    "credits": "3"
+  }
+]
