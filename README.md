@@ -1,6 +1,6 @@
-# CourseConnect Starter
+# CourseConnect
 
-CourseConnect is a starter implementation of a semantic course discovery tool. This scaffold includes:
+CourseConnect is a implementation of a semantic course discovery tool. This scaffold includes:
 
 - A FastAPI backend
 - A sample course dataset
@@ -8,8 +8,6 @@ CourseConnect is a starter implementation of a semantic course discovery tool. T
 - A loader for importing scraped catalog data into SQLite
 - A Sentence-BERT + FAISS indexing pipeline
 - A React frontend for natural-language search
-
-This is designed to help your team get from proposal to working prototype quickly.
 
 ## Project Structure
 
