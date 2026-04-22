@@ -1,13 +1,19 @@
 # CourseConnect
 
-CourseConnect is a implementation of a semantic course discovery tool. This scaffold includes:
+CourseConnect is a semantic course discovery tool for Texas A&M course catalogs. The system allows users to enter a natural-language query such as `deep learning for computer vision` or `security in distributed systems` and returns ranked courses that are relevant to that topic.
 
-- A FastAPI backend
-- A sample course dataset
-- A scraper starter for Texas A&M catalog index discovery
-- A loader for importing scraped catalog data into SQLite
-- A Sentence-BERT + FAISS indexing pipeline
-- A React frontend for natural-language search
+The project combines catalog scraping, structured storage, embedding-based retrieval, and a lightweight web interface. It is intended as a prototype for helping students explore courses across departments more effectively than with keyword-only browsing.
+
+## Features
+
+- FastAPI backend for course search
+- React frontend for natural-language queries
+- Sentence-BERT embeddings for semantic retrieval
+- FAISS index for nearest-neighbor search
+- Hybrid reranking with title, topic, description, and prerequisite overlap
+- Level filter for undergraduate and graduate courses
+- TAMU catalog scraper for both undergraduate and graduate course indexes
+- SQLite database for storing course records
 
 ## Project Structure
 
@@ -27,7 +33,9 @@ courseconnect/
 │   │   ├── build_index.py
 │   │   ├── load_scraped_courses.py
 │   │   └── scrape_catalog.py
-│   └── requirements.txt
+│   ├── artifacts/
+│   ├── requirements.txt
+│   └── courseconnect.db
 └── frontend/
     ├── index.html
     ├── package.json
@@ -38,83 +46,52 @@ courseconnect/
     └── vite.config.js
 ```
 
-## What This Starter Already Does
+## Requirements
 
-- Stores courses in SQLite with SQLAlchemy
-- Exposes a REST API for listing and searching courses
-- Builds semantic embeddings with `sentence-transformers`
-- Indexes vectors with FAISS
-- Displays ranked results in a simple React UI
-- Supports filtering by course level
-- Scrapes both undergraduate and graduate catalog indexes
-- Stores duplicate course codes separately when they come from different catalog origins
-- Falls back to a lightweight keyword scorer if the semantic index is not built yet
+- Python 3.13 or 3.14
+- Node.js and npm
+- Internet access for catalog scraping and first-time model download
 
-## Quick Start
+## Running with Sample Data
 
-### 1. Backend setup
+### Backend
 
 ```bash
-cd /Users/smritis/Documents/Codex/2026-04-22-courseconnect-a-tool-for-discovering-relevant/backend
+cd backend
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
-```
-
-If you already created the virtual environment with an older dependency set and `pip install` failed, recreate it before retrying:
-
-```bash
-rm -rf .venv
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel
-pip install -r requirements.txt
-```
-
-### 2. Seed the database with sample data
-
-```bash
 python -m app.database
-```
-
-### 3. Build the semantic index
-
-```bash
 python scripts/build_index.py
-```
-
-### 4. Run the backend
-
-```bash
 uvicorn app.main:app --reload
 ```
 
-Backend URL:
+The backend runs at:
 
 - `http://127.0.0.1:8000`
-- Swagger docs: `http://127.0.0.1:8000/docs`
+- `http://127.0.0.1:8000/docs`
 
-### 5. Frontend setup
+### Frontend
 
 In a second terminal:
 
 ```bash
-cd /Users/smritis/Documents/Codex/2026-04-22-courseconnect-a-tool-for-discovering-relevant/frontend
+cd frontend
 npm install
 npm run dev
 ```
 
-Frontend URL:
+The frontend runs at:
 
 - `http://127.0.0.1:5173`
 
-## Real Data Workflow
+## Running with Scraped TAMU Data
 
-If you want to use scraped TAMU data instead of the sample dataset:
+To replace the sample dataset with scraped course data:
 
 ```bash
-cd /Users/smritis/Documents/Codex/2026-04-22-courseconnect-a-tool-for-discovering-relevant/backend
+cd backend
 source .venv/bin/activate
 rm -f courseconnect.db
 python scripts/scrape_catalog.py
@@ -123,21 +100,45 @@ python scripts/build_index.py
 uvicorn app.main:app --reload
 ```
 
-What each step does:
+What these scripts do:
 
-- `scrape_catalog.py` discovers department pages from the TAMU undergraduate and graduate course indexes and writes `scraped_courses.json`
-- `load_scraped_courses.py` clears the `courses` table and loads the scraped JSON into SQLite
-- `build_index.py` rebuilds the embedding index from whatever is currently in the database
+- `scrape_catalog.py` discovers department pages from the TAMU undergraduate and graduate course indexes and saves the results to `backend/data/scraped_courses.json`
+- `load_scraped_courses.py` loads the scraped JSON into SQLite
+- `build_index.py` rebuilds the semantic search index from the current database contents
+
+## Search Pipeline
+
+CourseConnect uses a two-stage retrieval pipeline:
+
+1. Candidate retrieval with Sentence-BERT embeddings and FAISS
+2. Lightweight reranking using:
+   - semantic similarity
+   - title overlap
+   - topic overlap
+   - description overlap
+   - prerequisite overlap
+
+This makes the results more interpretable than raw nearest-neighbor search alone.
 
 ## Notes
 
-- Real TAMU pages may change structure over time, so the scraper should be treated as a starting point.
-- The current scraper discovers department pages from:
+- The scraper currently discovers department pages from:
   - `https://catalog.tamu.edu/undergraduate/course-descriptions/`
   - `https://catalog.tamu.edu/graduate/course-descriptions/`
-- It currently scrapes all discovered undergraduate and graduate department subject pages from those indexes.
-- The frontend currently searches across all departments by default and only exposes a level filter.
-- `sentence-transformers` downloads the model the first time you run the indexing script.
-- If FAISS or embeddings are not ready, the backend still provides a keyword-based fallback so you can keep developing.
-- Python 3.14 needs a newer `pydantic`/`pydantic-core` line than older 2025-era pins. This starter now uses a compatible range.
-- If you change the schema or seed data shape, delete `backend/courseconnect.db` and rebuild the index so SQLite and FAISS stay in sync.
+- Scraping all departments can take some time because it fetches many catalog pages.
+- Some course codes may appear more than once if they are exposed through different catalog origins; those entries are stored separately.
+- The frontend currently searches across all departments by default and exposes a level filter.
+- `sentence-transformers` downloads the model the first time the index is built.
+- If you change the schema, delete `backend/courseconnect.db` and rebuild the FAISS index.
+
+## Suggested Git Ignore
+
+These files are usually local or generated and should not be committed:
+
+```text
+backend/.venv/
+backend/courseconnect.db
+backend/artifacts/
+node_modules/
+.DS_Store
+```
